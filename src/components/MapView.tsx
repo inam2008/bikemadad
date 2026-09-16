@@ -68,13 +68,6 @@ export function MapView({ center, markers, className, zoom = 15 }: Props) {
 
     for (const m of markers) {
       const isMechanic = m.kind === "mechanic";
-      const icon = L.divIcon({
-        className: "",
-        html = "",
-        iconSize: [34, 34],
-        iconAnchor: [17, 17],
-      });
-      void icon;
       const marker = L.marker([m.lat, m.lng], {
         icon: L.divIcon({
           className: "",
