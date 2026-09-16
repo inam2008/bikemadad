@@ -14,7 +14,171 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      parts_prices: {
+        Row: {
+          category: string
+          id: string
+          name_en: string
+          name_ur: string
+          price_max: number
+          price_min: number
+          sort_order: number
+          unit: string
+        }
+        Insert: {
+          category: string
+          id?: string
+          name_en: string
+          name_ur: string
+          price_max: number
+          price_min: number
+          sort_order?: number
+          unit?: string
+        }
+        Update: {
+          category?: string
+          id?: string
+          name_en?: string
+          name_ur?: string
+          price_max?: number
+          price_min?: number
+          sort_order?: number
+          unit?: string
+        }
+        Relationships: []
+      }
+      phone_otps: {
+        Row: {
+          attempts: number
+          channel: string
+          code: string
+          consumed_at: string | null
+          created_at: string
+          expires_at: string
+          id: string
+          phone: string
+        }
+        Insert: {
+          attempts?: number
+          channel?: string
+          code: string
+          consumed_at?: string | null
+          created_at?: string
+          expires_at: string
+          id?: string
+          phone: string
+        }
+        Update: {
+          attempts?: number
+          channel?: string
+          code?: string
+          consumed_at?: string | null
+          created_at?: string
+          expires_at?: string
+          id?: string
+          phone?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          cnic: string | null
+          created_at: string
+          full_name: string
+          id: string
+          id_photo_url: string | null
+          is_online: boolean
+          lat: number | null
+          lng: number | null
+          location_updated_at: string | null
+          phone: string
+          role: Database["public"]["Enums"]["app_role"]
+          updated_at: string
+        }
+        Insert: {
+          cnic?: string | null
+          created_at?: string
+          full_name?: string
+          id: string
+          id_photo_url?: string | null
+          is_online?: boolean
+          lat?: number | null
+          lng?: number | null
+          location_updated_at?: string | null
+          phone?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string
+        }
+        Update: {
+          cnic?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          id_photo_url?: string | null
+          is_online?: boolean
+          lat?: number | null
+          lng?: number | null
+          location_updated_at?: string | null
+          phone?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      service_requests: {
+        Row: {
+          bike_model: string | null
+          bike_reg_no: string | null
+          created_at: string
+          customer_id: string
+          customer_name: string | null
+          customer_phone: string | null
+          id: string
+          landmark: string | null
+          lat: number | null
+          lng: number | null
+          mechanic_id: string | null
+          problem_note: string | null
+          problem_type: string
+          status: Database["public"]["Enums"]["request_status"]
+          updated_at: string
+        }
+        Insert: {
+          bike_model?: string | null
+          bike_reg_no?: string | null
+          created_at?: string
+          customer_id: string
+          customer_name?: string | null
+          customer_phone?: string | null
+          id?: string
+          landmark?: string | null
+          lat?: number | null
+          lng?: number | null
+          mechanic_id?: string | null
+          problem_note?: string | null
+          problem_type: string
+          status?: Database["public"]["Enums"]["request_status"]
+          updated_at?: string
+        }
+        Update: {
+          bike_model?: string | null
+          bike_reg_no?: string | null
+          created_at?: string
+          customer_id?: string
+          customer_name?: string | null
+          customer_phone?: string | null
+          id?: string
+          landmark?: string | null
+          lat?: number | null
+          lng?: number | null
+          mechanic_id?: string | null
+          problem_note?: string | null
+          problem_type?: string
+          status?: Database["public"]["Enums"]["request_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +187,13 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      app_role: "customer" | "mechanic"
+      request_status:
+        | "pending"
+        | "accepted"
+        | "on_the_way"
+        | "completed"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +320,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["customer", "mechanic"],
+      request_status: [
+        "pending",
+        "accepted",
+        "on_the_way",
+        "completed",
+        "cancelled",
+      ],
+    },
   },
 } as const
