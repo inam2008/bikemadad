@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PartsRouteImport } from './routes/parts'
 import { Route as AuthRoleRouteImport } from './routes/auth.$role'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartsRoute = PartsRouteImport.update({
+  id: '/parts',
+  path: '/parts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoleRoute = AuthRoleRouteImport.update({
@@ -25,27 +31,31 @@ const AuthRoleRoute = AuthRoleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/parts': typeof PartsRoute
   '/auth/$role': typeof AuthRoleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/parts': typeof PartsRoute
   '/auth/$role': typeof AuthRoleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/parts': typeof PartsRoute
   '/auth/$role': typeof AuthRoleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth/$role'
+  fullPaths: '/' | '/parts' | '/auth/$role'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth/$role'
-  id: '__root__' | '/' | '/auth/$role'
+  to: '/' | '/parts' | '/auth/$role'
+  id: '__root__' | '/' | '/parts' | '/auth/$role'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PartsRoute: typeof PartsRoute
   AuthRoleRoute: typeof AuthRoleRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parts': {
+      id: '/parts'
+      path: '/parts'
+      fullPath: '/parts'
+      preLoaderRoute: typeof PartsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/$role': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PartsRoute: PartsRoute,
   AuthRoleRoute: AuthRoleRoute,
 }
 export const routeTree = rootRouteImport
