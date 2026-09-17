@@ -40,11 +40,23 @@ function AuthScreen() {
   const isMechanic = role === "mechanic";
 
   const onSend = async () => {
-    if (fullName.trim().length < 2) return toast.error("Please enter your full name");
-    if (phone.replace(/[^0-9]/g, "").length < 10) return toast.error("Please enter a valid phone number");
-    if (isMechanic && cnic.replace(/[^0-9]/g, "").length !== 13)
-      return toast.error("Please enter your 13-digit CNIC number");
-    if (isMechanic && !idFile) return toast.error("Please attach a photo of your CNIC / ID");
+    if (fullName.trim().length < 2) {
+      toast.error("Please enter your full name");
+      return;
+    }
+    if (phone.replace(/[^0-9]/g, "").length < 10) {
+      toast.error("Please enter a valid phone number");
+      return;
+    }
+    if (isMechanic && cnic.replace(/[^0-9]/g, "").length !== 13) {
+      toast.error("Please enter your 13-digit CNIC number");
+      return;
+    }
+    if (isMechanic && !idFile) {
+      toast.error("Please attach a photo of your CNIC / ID");
+      return;
+    }
+
 
     setBusy(true);
     try {
@@ -60,7 +72,10 @@ function AuthScreen() {
   };
 
   const onVerify = async () => {
-    if (!/^[0-9]{6}$/.test(code)) return toast.error("Enter the 6-digit code");
+    if (!/^[0-9]{6}$/.test(code)) {
+      toast.error("Enter the 6-digit code");
+      return;
+    }
     setBusy(true);
     try {
       const creds = await checkCode({

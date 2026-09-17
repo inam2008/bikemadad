@@ -10,11 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CustomerRouteImport } from './routes/customer'
+import { Route as MechanicRouteImport } from './routes/mechanic'
+import { Route as PartsRouteImport } from './routes/parts'
 import { Route as AuthRoleRouteImport } from './routes/auth.$role'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerRoute = CustomerRouteImport.update({
+  id: '/customer',
+  path: '/customer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MechanicRoute = MechanicRouteImport.update({
+  id: '/mechanic',
+  path: '/mechanic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartsRoute = PartsRouteImport.update({
+  id: '/parts',
+  path: '/parts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoleRoute = AuthRoleRouteImport.update({
@@ -25,27 +43,39 @@ const AuthRoleRoute = AuthRoleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/customer': typeof CustomerRoute
+  '/mechanic': typeof MechanicRoute
+  '/parts': typeof PartsRoute
   '/auth/$role': typeof AuthRoleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/customer': typeof CustomerRoute
+  '/mechanic': typeof MechanicRoute
+  '/parts': typeof PartsRoute
   '/auth/$role': typeof AuthRoleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/customer': typeof CustomerRoute
+  '/mechanic': typeof MechanicRoute
+  '/parts': typeof PartsRoute
   '/auth/$role': typeof AuthRoleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth/$role'
+  fullPaths: '/' | '/customer' | '/mechanic' | '/parts' | '/auth/$role'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth/$role'
-  id: '__root__' | '/' | '/auth/$role'
+  to: '/' | '/customer' | '/mechanic' | '/parts' | '/auth/$role'
+  id: '__root__' | '/' | '/customer' | '/mechanic' | '/parts' | '/auth/$role'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CustomerRoute: typeof CustomerRoute
+  MechanicRoute: typeof MechanicRoute
+  PartsRoute: typeof PartsRoute
   AuthRoleRoute: typeof AuthRoleRoute
 }
 
@@ -56,6 +86,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer': {
+      id: '/customer'
+      path: '/customer'
+      fullPath: '/customer'
+      preLoaderRoute: typeof CustomerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mechanic': {
+      id: '/mechanic'
+      path: '/mechanic'
+      fullPath: '/mechanic'
+      preLoaderRoute: typeof MechanicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parts': {
+      id: '/parts'
+      path: '/parts'
+      fullPath: '/parts'
+      preLoaderRoute: typeof PartsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/$role': {
@@ -70,6 +121,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CustomerRoute: CustomerRoute,
+  MechanicRoute: MechanicRoute,
+  PartsRoute: PartsRoute,
   AuthRoleRoute: AuthRoleRoute,
 }
 export const routeTree = rootRouteImport
