@@ -72,7 +72,10 @@ function AuthScreen() {
   };
 
   const onVerify = async () => {
-    if (!/^[0-9]{6}$/.test(code)) return toast.error("Enter the 6-digit code");
+    if (!/^[0-9]{6}$/.test(code)) {
+      toast.error("Enter the 6-digit code");
+      return;
+    }
     setBusy(true);
     try {
       const creds = await checkCode({
