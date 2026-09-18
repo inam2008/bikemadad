@@ -434,6 +434,7 @@ function Field({
         </span>
       </label>
       <input
+        aria-label={label}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
