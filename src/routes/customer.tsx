@@ -378,6 +378,7 @@ function CustomerDashboard() {
                   {problem === "Other" ? "Describe the problem" : "Anything else we should know?"}
                 </label>
                 <textarea
+                  aria-label="Extra details"
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   rows={3}
