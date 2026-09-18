@@ -209,6 +209,7 @@ function AuthScreen() {
           <div className="mt-7 space-y-4">
             <Field label="6-digit code" urdu="چھ ہندسوں کا کوڈ">
               <input
+                aria-label="6-digit code"
                 value={code}
                 onChange={(e) => setCode(e.target.value.replace(/[^0-9]/g, "").slice(0, 6))}
                 inputMode="numeric"
