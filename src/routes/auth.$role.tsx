@@ -128,6 +128,7 @@ function AuthScreen() {
           <div className="mt-7 space-y-4">
             <Field label="Full name" urdu="پورا نام">
               <input
+                aria-label="Full name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 maxLength={80}
@@ -138,6 +139,7 @@ function AuthScreen() {
 
             <Field label="Phone number" urdu="فون نمبر">
               <input
+                aria-label="Phone number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 inputMode="tel"
@@ -151,6 +153,7 @@ function AuthScreen() {
               <>
                 <Field label="CNIC / National ID number" urdu="شناختی کارڈ نمبر">
                   <input
+                    aria-label="CNIC / National ID number"
                     value={cnic}
                     onChange={(e) => setCnic(e.target.value)}
                     inputMode="numeric"
@@ -206,6 +209,7 @@ function AuthScreen() {
           <div className="mt-7 space-y-4">
             <Field label="6-digit code" urdu="چھ ہندسوں کا کوڈ">
               <input
+                aria-label="6-digit code"
                 value={code}
                 onChange={(e) => setCode(e.target.value.replace(/[^0-9]/g, "").slice(0, 6))}
                 inputMode="numeric"

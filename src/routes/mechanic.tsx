@@ -127,8 +127,10 @@ function MechanicDashboard() {
   const setStatus = async (job: Job, status: Job["status"]) => {
     if (!session?.user) return;
     setBusyId(job.id);
-    const patch: Record<string, unknown> = { status };
-    if (status === "accepted") patch['mechanic_id'] = session.user.id;
+    const patch =
+      status === "accepted"
+        ? { status, mechanic_id: session.user.id }
+        : { status };
     const { error } = await supabase.from("service_requests").update(patch).eq("id", job.id);
     setBusyId(null);
     if (error) {
