@@ -128,6 +128,7 @@ function AuthScreen() {
           <div className="mt-7 space-y-4">
             <Field label="Full name" urdu="پورا نام">
               <input
+                aria-label="Full name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 maxLength={80}
