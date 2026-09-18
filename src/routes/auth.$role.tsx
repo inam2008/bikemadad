@@ -153,6 +153,7 @@ function AuthScreen() {
               <>
                 <Field label="CNIC / National ID number" urdu="شناختی کارڈ نمبر">
                   <input
+                    aria-label="CNIC / National ID number"
                     value={cnic}
                     onChange={(e) => setCnic(e.target.value)}
                     inputMode="numeric"
