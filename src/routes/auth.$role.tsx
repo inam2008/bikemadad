@@ -139,6 +139,7 @@ function AuthScreen() {
 
             <Field label="Phone number" urdu="فون نمبر">
               <input
+                aria-label="Phone number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 inputMode="tel"
